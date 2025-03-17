@@ -14,3 +14,5 @@ container_class.txt
 job_results.json
 fetched_links.json
 analysis_results.txt
+sent_links.json
+analysis_results/

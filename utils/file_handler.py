@@ -1,4 +1,5 @@
 import json
+import os
 
 def load_container_class():
     try:
@@ -22,9 +23,26 @@ def save_fetched_links(links):
     print("💾 Links saved to fetched_links.json")
 
 def load_fetched_links():
-    try:
-        with open('fetched_links.json', 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        print("📝 No saved links found")
+    if not os.path.exists('fetched_links.json'):
+        with open('fetched_links.json', 'w') as f:
+            json.dump([], f) 
+        print("📝 Created new fetched_links.json")
         return []
+    
+    with open('fetched_links.json', 'r') as f:
+        return json.load(f)
+
+def save_sent_links(links):
+    with open('sent_links.json', 'w') as f:
+        json.dump(links, f, indent=2)
+    print("💾 Links saved to sent_links.json")
+
+def load_sent_links():
+    if not os.path.exists('sent_links.json'):
+        with open('sent_links.json', 'w') as f:
+            json.dump([], f) 
+        print("📝 Created new sent_links.json")
+        return []
+    
+    with open('sent_links.json', 'r') as f:
+        return json.load(f)
